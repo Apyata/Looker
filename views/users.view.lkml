@@ -98,9 +98,26 @@ view: users {
     type: zipcode
     sql: ${TABLE}.zip ;;
   }
-
+  dimension: full_name {
+    type: string
+    sql: concat(concat(${first_name},''),${last_name});;
+  }
+  dimension: length {
+    type: number
+    sql: len(${full_name}) ;;
+  }
+dimension: age_tier {
+  type: tier
+  tiers: [1,10,20,30,40,50,60,70,80,90,99]
+  sql: ${age} ;;
+  style: integer
+}
   measure: count {
     type: count
     drill_fields: [id, first_name, last_name, orders.count]
+  }
+  measure: averageage {
+    type: average
+    sql: ${age} ;;
   }
 }

@@ -18,7 +18,7 @@ view: order_items {
   # This dimension will be called "Inventory Item ID" in Explore.
 
   dimension: inventory_item_id {
-    label: "ss"
+
     type: number
     # hidden: yes
     sql: ${TABLE}.inventory_item_id ;;

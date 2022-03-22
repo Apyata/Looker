@@ -19,6 +19,7 @@ view: order_items {
 
   dimension: inventory_item_id {
     label: "fine"
+
     type: number
     # hidden: yes
     sql: ${TABLE}.inventory_item_id ;;

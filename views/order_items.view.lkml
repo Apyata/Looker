@@ -18,6 +18,7 @@ view: order_items {
   # This dimension will be called "Inventory Item ID" in Explore.
 
   dimension: inventory_item_id {
+    label: "fine"
     type: number
     # hidden: yes
     sql: ${TABLE}.inventory_item_id ;;
@@ -76,4 +77,56 @@ view: order_items {
     sql: ${sale_price} ;;
     value_format: "$0.00"
   }
+  parameter: avg {
+    type: unquoted
+    allowed_value: {
+      label: "total_rev"
+      value: "SUM"
+    }
+    allowed_value: {
+      label: "total_avg"
+      value: "AVG"
+    }}
+    measure: to{
+      type: number
+      sql: {% parameter avg %}(${sale_price}) ;;
+  }
+
+    parameter: sale_price_metric_picker {
+      description: "Use with the Sale Price Metric measure"
+      type: unquoted
+      allowed_value: {
+        label: "Total Sale Price"
+        value: "SUM"
+      }
+      allowed_value: {
+        label: "Average Sale Price"
+        value: "AVG"
+      }
+      allowed_value: {
+        label: "Maximum Sale Price"
+        value: "MAX"
+      }
+      allowed_value: {
+        label: "Minimum Sale Price"
+        value: "MIN"
+      }
+    }
+    measure: sale_price_metric {
+      description: "Use with the Sale Price Metric Picker filter-only field"
+      type: number
+      label_from_parameter: sale_price_metric_picker
+      sql: {% parameter sale_price_metric_picker %}(${sale_price}) ;;
+      value_format_name: usd}
+parameter: naame{
+  type: unquoted
+  allowed_value: {
+    label: "tot"
+    value: "sale_price"
+  }
+}
+measure: aa{
+  type: sum
+  sql: {% parameter naame %} ;;
+}
 }

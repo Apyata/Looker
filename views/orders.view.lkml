@@ -48,10 +48,13 @@ view: orders {
     type: number
     # hidden: yes
     sql: ${TABLE}.user_id ;;
+    ##value_format: "[>=1000000]$0.00,,\"M\";[>=1000]$0.00,\"K\";$0,00"
   }
 
   measure: count {
     type: count
     drill_fields: [id, users.id, users.first_name, users.last_name, order_items.count]
+    ##alue_format:"[>=1000000]0.00,,\"M\";[>=1000]0.00,\"K\";0.000"
+
   }
 }

@@ -59,6 +59,7 @@ view: users {
       week,
       month,
       quarter,
+      hour,
       year
     ]
     sql: ${TABLE}.created_at ;;
@@ -100,7 +101,7 @@ view: users {
   }
   dimension: full_name {
     type: string
-    sql: concat(concat(${first_name},''),${last_name});;
+    sql: ${first_name}||' '||${last_name};;
   }
   dimension: length {
     type: number

@@ -76,5 +76,17 @@ view: inventory_items {
   measure: count {
     type: count
     drill_fields: [id, products.id, products.item_name, order_items.count]
+
+  }
+  measure: AvgHandleTimeNew {
+    label: "Average Handle Time [Working Hours Only]"
+    view_label: "Average Durations"
+    description: " AVG HandleTime (Max Completedtime- Min AssignedTime-Sum(Parked Duration))"
+    type: average_distinct
+    sql: ${cost} ;;
+
+#value_format: "0.00"
+    html: {% assign seconds=value | modulo: 60 %}
+      {{ value | divided_by: 60 | floor }} m &nbsp {{ seconds | divided_by: 1 | floor }} s ;;
   }
 }

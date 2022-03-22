@@ -1,4 +1,5 @@
 # Define the database connection to be used for this model.
+
 connection: "thelook"
 
 # include all the views

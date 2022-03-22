@@ -18,7 +18,9 @@ view: order_items {
   # This dimension will be called "Inventory Item ID" in Explore.
 
   dimension: inventory_item_id {
+
     label: "fine"
+
 
     type: number
     # hidden: yes

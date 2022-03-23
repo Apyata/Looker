@@ -18,6 +18,7 @@ view: inventory_items {
   # This dimension will be called "Cost" in Explore.
 
   dimension: cost {
+    label: "money"
     type: number
     sql: ${TABLE}.cost ;;
   }

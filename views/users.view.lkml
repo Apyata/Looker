@@ -9,6 +9,7 @@ view: users {
 
   dimension: id {
     primary_key: yes
+    label: "new_id"
     type: number
     sql: ${TABLE}.id ;;
   }
@@ -112,6 +113,7 @@ dimension: age_tier {
   tiers: [1,10,20,30,40,50,60,70,80,90,99]
   sql: ${age} ;;
   style: integer
+  value_format: "$#,##0"
 }
   measure: count {
     type: count

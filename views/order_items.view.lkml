@@ -28,6 +28,7 @@ view: order_items {
     type: number
     # hidden: yes
     sql: ${TABLE}.order_id ;;
+    html: {{aa._rendered_value}} ;;
   }
 
   # Dates and timestamps can be represented in Looker using a dimension group of type: time.
@@ -62,7 +63,10 @@ view: order_items {
     type: sum
     sql: ${sale_price} ;;
   }
-
+measure: xx {
+  type: number
+  sql: ${sale_price} ;;
+}
   measure: average_sale_price {
     type: average
     sql: ${sale_price} ;;
@@ -121,12 +125,13 @@ view: order_items {
 parameter: naame{
   type: unquoted
   allowed_value: {
-    label: "tot"
-    value: "sale_price"
+    ##label: "tot"
+    value: "offen"
   }
 }
 measure: aa{
   type: sum
   sql: {% parameter naame %} ;;
 }
+
 }

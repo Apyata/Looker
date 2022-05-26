@@ -8,10 +8,11 @@ view: users {
   # You need to define a primary key in a view in order to join to other views.
 
   dimension: id {
+
     primary_key: yes
     label: "new_id"
     type: number
-    sql: ${TABLE}.id ;;
+    sql: ${TABLE}.id-1 ;;
   }
 
   # Here's what a typical dimension looks like in LookML.
@@ -19,6 +20,7 @@ view: users {
   # This dimension will be called "Age" in Explore.
 
   dimension: age {
+
     type: number
     sql: ${TABLE}.age ;;
   }
@@ -43,6 +45,7 @@ view: users {
   }
 
   dimension: country {
+
     type: string
     map_layer_name: countries
     sql: ${TABLE}.country ;;
@@ -52,6 +55,7 @@ view: users {
   # Looker converts dates and timestamps to the specified timeframes within the dimension group.
 
   dimension_group: created {
+
     type: time
     timeframes: [
       raw,
@@ -59,13 +63,44 @@ view: users {
       date,
       week,
       month,
-      quarter,
       hour,
+      quarter,
+
       year
     ]
+    convert_tz: yes
     sql: ${TABLE}.created_at ;;
+
+
+  }
+  dimension: cod_date {
+    type: date
+    sql: DATE(year, month, day};;
+  }
+  dimension: raw_effective_utc_date {
+    type: date_time
+    sql: ${created_raw} ;;
+    convert_tz: yes
   }
 
+  parameter: date_granularity {
+    type: string
+    allowed_value: { value: "day" }
+    allowed_value: { value: "hour" }
+    allowed_value: { value: "Quarter" }
+    allowed_value: { value: "Year" }
+  }
+    dimension: date {
+      type: string
+      label_from_parameter: date_granularity
+      sql:
+
+          {% if date_granularity._parameter_value == 'hour' %}
+            ${created_hour}
+          {% else %}
+            ${created_date}
+          {% endif %};;
+    }
   dimension: email {
     type: string
     sql: ${TABLE}.email ;;
@@ -74,6 +109,7 @@ view: users {
   dimension: first_name {
     type: string
     sql: ${TABLE}.first_name ;;
+    drill_fields: [id]
 
 
   }
@@ -106,9 +142,14 @@ view: users {
     type: string
     sql: ${first_name}||' '||${last_name};;
   }
+
   dimension: length {
     type: number
     sql: len(${full_name}) ;;
+  }
+  dimension: lengt {
+    type: number
+    sql: len(${last_name}) ;;
   }
 dimension: age_tier {
   type: tier
@@ -124,5 +165,9 @@ dimension: age_tier {
   measure: averageage {
     type: average
     sql: ${age} ;;
+  }
+  measure: xx {
+    type: number
+    sql: ${lengt}/${length};;
   }
 }

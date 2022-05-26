@@ -1,8 +1,12 @@
 # Define the database connection to be used for this model.
 
 connection: "thelook"
+include: "/**/bus_overview.dashboard"
+
+
 
 # include all the views
+
 include: "/views/**/*.view"
 
 # Datagroups define a caching policy for an Explore. To learn more,
@@ -12,7 +16,10 @@ datagroup: ecommerce_ashutosh_default_datagroup {
   # sql_trigger: SELECT MAX(id) FROM etl_log;;
   max_cache_age: "1 hour"
 }
-
+access_grant: a {
+  user_attribute:aa
+  allowed_values: ["rush"]
+}
 persist_with: ecommerce_ashutosh_default_datagroup
 
 # Explores allow you to join together different views (database tables) based on the
@@ -23,6 +30,7 @@ persist_with: ecommerce_ashutosh_default_datagroup
 # To see the Explore you’re building, navigate to the Explore menu and select an Explore under "Ecommerce Ashutosh"
 
 explore: inventory_items {
+  persist_with: ecommerce_ashutosh_default_datagroup
   join: products {
     type: left_outer
     sql_on: ${inventory_items.product_id} = ${products.id} ;;
@@ -44,6 +52,7 @@ explore: order_items {
   }
 
   join: users {
+    view_label: "sun"
     type: left_outer
     sql_on: ${orders.user_id} = ${users.id} ;;
     relationship: many_to_one
@@ -78,4 +87,7 @@ explore: product_facts {
 
 explore: products {}
 
-explore: users {}
+explore: users {
+
+
+  }

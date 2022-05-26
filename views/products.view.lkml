@@ -21,7 +21,16 @@ view: products {
     type: string
     sql: ${TABLE}.brand ;;
   }
+  dimension:pod{
+    type: string
+    sql: case
+    when ${brand} like '%A-Line%' THEN 'ALine'
+    when ${brand} like '%A shore Fit%' then 'ASHOREFIT'
+else ${brand}
 
+      END ;;
+
+    }
   dimension: category {
     type: string
     sql: ${TABLE}.category ;;

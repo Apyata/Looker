@@ -88,6 +88,6 @@ explore: product_facts {
 explore: products {}
 
 explore: users {
-
+required_access_grants: [a]
 
   }

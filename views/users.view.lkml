@@ -73,6 +73,12 @@ view: users {
 
 
   }
+  dimension_group: talktime {
+  type: duration
+  intervals: [minute]
+  sql_start: ${created_time} ;;
+  sql_end: CURRENT_TIMESTAMP() ;;
+  }
   dimension: cod_date {
     type: date
     sql: DATE(year, month, day};;
@@ -146,6 +152,7 @@ view: users {
   dimension: length {
     type: number
     sql: len(${full_name}) ;;
+    value_format_name: id
   }
   dimension: lengt {
     type: number

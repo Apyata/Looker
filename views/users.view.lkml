@@ -221,9 +221,9 @@ dimension: age_tier {
   filter: factory_filter {
     type: string
   }
-  dimension: reusing {
-    type: date
-    sql: @{ss} ;;
-  }
+  #dimension: reusing {
+   # type: date
+  #  sql: @{ss} ;;
+#  }
 
 }

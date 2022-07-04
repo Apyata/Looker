@@ -170,4 +170,7 @@ dimension: age_tier {
     type: number
     sql: ${lengt}/${length};;
   }
+  measure: xy {
+    type: number
+    sql: ${lengt}/${length};;
 }

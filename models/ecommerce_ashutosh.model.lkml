@@ -54,8 +54,10 @@ explore: order_items {
   join: users {
     view_label: "sun"
     type: left_outer
-    sql_on: ${orders.user_id} = ${users.id} ;;
+    sql_on: ${orders.user_id} = ${users.id} AND
+    {% condition users.factory_filter %} users.id {% endcondition %} ;;
     relationship: many_to_one
+
   }
 
   join: products {

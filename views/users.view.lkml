@@ -1,5 +1,6 @@
 # The name of this view in Looker is "Users"
 view: users {
+ # required_access_grants: [a]
   # The sql_table_name parameter indicates the underlying database table
   # to be used for all fields in this view.
   sql_table_name: public.users ;;
@@ -120,9 +121,10 @@ view: users {
 
   }
 
-  dimension: gender {
+  dimension: gen {
     type: string
-    sql: ${TABLE}.gender ;;
+    sql: ${TABLE}.gen ;;
+
   }
 
   dimension: last_name {
@@ -149,15 +151,53 @@ view: users {
     sql: ${first_name}||' '||${last_name};;
   }
 
+
+
   dimension: length {
     type: number
-    sql: len(${full_name}) ;;
+    sql: len(${first_name}) ;;
     value_format_name: id
-  }
-  dimension: lengt {
-    type: number
-    sql: len(${last_name}) ;;
-  }
+    html:
+     {% if value == lengt._value %}
+        <p style = "background-color:green;font-size:100%">{{rendered_value }}</p>
+        {% else  %}
+        <p style="background-color:Tomato;font-size:100%">{{rendered_value }}</p>
+        {% endif %} ;;
+
+    }
+
+    dimension: lengt {
+      type: number
+      sql: len(${last_name}) ;;
+      html:
+      {% if value == length._value %}
+          <p style = "background-color:green;font-size:100%">{{rendered_value }}</p>
+          {% else  %}
+          <p style="background-color:Tomato;font-size:100%">{{rendered_value }}</p>
+          {% endif %} ;;
+
+      }
+dimension: difference {
+  type: number
+  sql: ${lengt}-@{ss} ;;
+}
+  #measure: dash_nav {
+   # hidden: no
+  #  label: "Navigation Bar"
+   # type: string
+   # sql: "";;
+   # html:
+   # <div style="background-color: #FFFFFF; height:525px;width:100%"></div>
+    #  <div style="background-color: #FFFFFF; border: solid 1px #4285F4; border-radius: 5px; padding: 5px 10px; height: 60px; width:100%">
+    #    <nav style="font-size: 18px; color: #4285F4">
+     #     <a style="padding: 5px; float: center; line-height: 40px; margin-left: 8px; color: #4285F4" href="https://dcl.dev.look.looker.com
+#/dashboards/2234?State={{ _filters['users.state'] | url_encode }}&Status={{ _filters['orders.status'] | url_encode }}">Order Fulfillment</a>
+
+    #    </nav>
+#      </div>
+ #   <div style="background-color: #FFFFFF; height:500px;width:100%"></div>;;
+ # }
+
 dimension: age_tier {
   type: tier
   tiers: [1,10,20,30,40,50,60,70,80,90,99]
@@ -176,5 +216,12 @@ dimension: age_tier {
   measure: xx {
     type: number
     sql: ${lengt}/${length};;
+  }
+  filter: factory_filter {
+    type: string
+  }
+  dimension: reuse {
+    type: date
+    sql: @{ss} ;;
   }
 }

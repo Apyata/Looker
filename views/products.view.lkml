@@ -34,6 +34,11 @@ else ${brand}
   dimension: category {
     type: string
     sql: ${TABLE}.category ;;
+    link: {
+      label: "{{department._value}}"
+      url: "https://dev.ordwaylabs.com/{{id._value}}/{{value}}"
+
+    }
   }
 
   dimension: department {

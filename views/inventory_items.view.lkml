@@ -33,6 +33,7 @@ dimension: cs {
   measure: total_cost {
     type: sum
     sql: ${cost} ;;
+    drill_fields: [id,cost]
   }
 
   measure: average_cost {
@@ -81,6 +82,11 @@ dimension: cs {
     type: count
     drill_fields: [id, products.id, products.item_name, order_items.count]
 
+  }
+  measure: sums {
+    type: sum
+    sql: ${cost} ;;
+    drill_fields: [id, products.id, products.item_name,cost]
   }
   measure: AvgHandleTimeNew {
     label: "Average Handle Time [Working Hours Only]"

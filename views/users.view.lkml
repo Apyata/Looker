@@ -217,6 +217,7 @@ dimension: age_tier {
     type: number
     sql: ${lengt}/${length};;
   }
+
   filter: factory_filter {
     type: string
   }
@@ -224,4 +225,5 @@ dimension: age_tier {
     type: date
     sql: @{ss} ;;
   }
+
 }

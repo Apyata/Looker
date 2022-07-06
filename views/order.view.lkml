@@ -37,6 +37,13 @@ view: orders {
   dimension: status {
     type: string
     sql: ${TABLE}.status ;;
+    link: {
+      label: "Drill Look"
+      #   url:"/https://dcltraining.dev.looker.com/looks/2453?&f[orders.status]={{ value }}
+      #  &f[orders.created_date]={{ orders.created_date._value|url_encode }}"
+      #}
+      url: "/https://dcltraining.dev.looker.com/looks/2456?f[orders.status]={{ value | url_encode }}&f[orders.created_date]={{ users.created_date._value | url_encode }}"
+    }
   }
 
   dimension: traffic_source {

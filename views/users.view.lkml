@@ -99,7 +99,13 @@ view: users {
   }
     dimension: date {
       type: string
-      label_from_parameter: date_granularity
+      #label_from_parameter: date_granularity
+      label: "
+    {% if date_granularity._parameter_value == \"'hour'\" %} (Dynamic) Start Hour of Day
+    {% elsif date_granularity._parameter_value == \"day\" %} (Dynamic) Start Day of Week
+    {% elsif date_granularity._parameter_value == \"year\" %} (Dynamic) Start Week of Year
+    {% elsif date_granularity._parameter_value == \"quarter\" %} (Dynamic) Start Quarter of Year
+    {% else %} (Dynamic) Start Dimension (Finite) {% endif %}"
       sql:
 
           {% if date_granularity._parameter_value == 'hour' %}
@@ -177,10 +183,10 @@ view: users {
           {% endif %} ;;
 
       }
-dimension: difference {
-  type: number
-  sql: ${lengt}-@{ss} ;;
-}
+#dimension: difference {
+#  type: number
+ # sql: ${lengt}-@{ss} ;;
+#}
   #measure: dash_nav {
    # hidden: no
   #  label: "Navigation Bar"

@@ -1,0 +1,12 @@
+{
+  "products" : "Produits",
+  "brand" : "Marque",
+  "brand_of_item" : "Marque de L'article",
+  "item_details" : "Détails de L'article",
+  "store_details" : "Détails du Magasin",
+  "category" : "Catégorie",
+  "cost" : "Coût",
+  "department" : "Département",
+  "name" : "Nom",
+  "retail_price" : "Prix en Détail"
+}

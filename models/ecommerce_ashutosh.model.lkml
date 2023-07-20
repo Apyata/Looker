@@ -16,10 +16,10 @@ datagroup: ecommerce_ashutosh_default_datagroup {
   # sql_trigger: SELECT MAX(id) FROM etl_log;;
   max_cache_age: "1 hour"
 }
-access_grant: a {
-  user_attribute:aa
-  allowed_values: ["rush"]
-}
+#access_grant: a {
+ # user_attribute:aa
+  #allowed_values: ["rush"]
+#}
 persist_with: ecommerce_ashutosh_default_datagroup
 
 # Explores allow you to join together different views (database tables) based on the

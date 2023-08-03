@@ -89,6 +89,7 @@ dimension: xyz {
   type: string
   sql: "[xyzx]" ;;
 }
+
   # ----- Sets of fields for drilling ------
   set: detail {
     fields: [

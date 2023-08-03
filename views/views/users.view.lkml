@@ -87,7 +87,7 @@ view: users {
   }
 dimension: xyz {
   type: string
-  sql: "[xyz]]" ;;
+  sql: "[xyz]" ;;
 }
   # ----- Sets of fields for drilling ------
   set: detail {

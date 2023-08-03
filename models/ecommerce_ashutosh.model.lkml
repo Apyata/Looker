@@ -1,7 +1,6 @@
 # Define the database connection to be used for this model.
 
 connection: "thelook"
-include: "/**/bus_overview.dashboard"
 
 
 
@@ -54,8 +53,7 @@ explore: order_items {
   join: users {
     view_label: "sun"
     type: left_outer
-    sql_on: ${orders.user_id} = ${users.id} AND
-    {% condition users.factory_filter %} users.id {% endcondition %} ;;
+    sql_on: ${orders.user_id} = ${users.id} ;;
     relationship: many_to_one
 
   }
@@ -75,13 +73,7 @@ explore: orders {
   }
 }
 
-explore: product_facts {
-  join: products {
-    type: left_outer
-    sql_on: ${product_facts.product_id} = ${products.id} ;;
-    relationship: many_to_one
-  }
-}
+
 
 # To create more sophisticated Explores that involve multiple views, you can use the join parameter.
 # Typically, join parameters require that you define the join type, join relationship, and a sql_on clause.

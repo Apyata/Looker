@@ -1,5 +1,8 @@
 {
-    "flight_info" : "Flight Info",
-    "id" : "Identifier",
-    "airline" : "Air Carrier"
+    "flight_info" : "complete status",
+    "id.ids" : "cancelled status",
+    "airline" : "Air Carrier",
+"reporting.yes" : "oui ",
+"reporting.no" : "Noi "
+
 }

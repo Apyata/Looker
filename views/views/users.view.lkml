@@ -89,7 +89,10 @@ dimension: xyz {
   type: string
   sql: "[xyzx]" ;;
 }
-
+parameter: xyzz {
+  type: string
+  default_value: "{{_localization['airline']}}"
+}
   # ----- Sets of fields for drilling ------
   set: detail {
     fields: [

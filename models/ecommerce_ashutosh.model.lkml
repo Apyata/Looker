@@ -1,7 +1,7 @@
 # Define the database connection to be used for this model.
 
 connection: "thelook"
-
+include: "/order_status_counts.dashboard.lookml"
 
 
 # include all the views
@@ -66,6 +66,9 @@ explore: order_items {
 }
 
 explore: orders {
+  always_filter: {
+    filters: [orders.status: "completed"]
+  }
   join: users {
     type: left_outer
     sql_on: ${orders.user_id} = ${users.id} ;;

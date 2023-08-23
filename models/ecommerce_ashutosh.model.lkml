@@ -3,13 +3,14 @@
 connection: "thelook"
 include: "/order_status_counts.dashboard.lookml"
 
-
+include: "/userss.view.lkml"
 # include all the views
 
 include: "/views/**/*.view"
 
 # Datagroups define a caching policy for an Explore. To learn more,
 # use the Quick Help panel on the right to see documentation.
+
 
 datagroup: ecommerce_ashutosh_default_datagroup {
   # sql_trigger: SELECT MAX(id) FROM etl_log;;
@@ -85,6 +86,15 @@ explore: orders {
 explore: products {}
 
 explore: users {
+  join: userss {
+    relationship: many_to_one
+    sql_on: ${userss.ids}=${userss.ids} ;;
+    fields: [
+      -userss.ids,
+      -userss.ages,
+      -userss.total_ages
+    ]
+  }
 #required_access_grants: [a]
 
   }

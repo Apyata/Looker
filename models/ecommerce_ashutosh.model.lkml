@@ -59,6 +59,8 @@ explore: order_items {
 
   }
 
+
+
   join: products {
     type: left_outer
     sql_on: ${inventory_items.product_id} = ${products.id} ;;
@@ -88,7 +90,7 @@ explore: products {}
 explore: users {
   join: userss {
     relationship: many_to_one
-    sql_on: ${userss.ids}=${userss.ids} ;;
+    sql_on: ${users.id}.id}=${userss.ids}.id} ;;
     fields: [
       -userss.ids,
       -userss.ages,

@@ -42,6 +42,7 @@ view: users {
     type: string
     map_layer_name: countries
     sql: ${TABLE}.country ;;
+
   }
   # Dates and timestamps can be represented in Looker using a dimension group of type: time.
   # Looker converts dates and timestamps to the specified timeframes within the dimension group.
@@ -60,6 +61,7 @@ view: users {
   dimension: first_name {
     type: string
     sql: ${TABLE}.first_name ;;
+
   }
 
   dimension: gender {
@@ -72,9 +74,23 @@ view: users {
     sql: ${TABLE}.last_name ;;
   }
 
-  dimension: state {
+  dimension: state_name {
     type: string
     sql: ${TABLE}.state ;;
+    map_layer_name: us_states
+    label: "Name"
+    html:
+    <div style="background: linear-gradient(to right, #D6AE7B, #EACDA3)">
+    <span style="display: table; margin: 0 auto;">
+    <b style="font-size: 15px; color: DarkRed;">{{ rendered_value }}</b>
+    </span>
+    </div>
+    ;;
+    link: {
+      label: "Go to Hub Level"
+      url: "/dashboards/4?state={{ rendered_value }}&limit=5000"
+    }
+
   }
 
   dimension: zip {
@@ -87,7 +103,8 @@ view: users {
   }
 dimension: xyz {
   type: string
-  sql: "[xyzx]" ;;
+  sql: "xyz😀" ;;
+  html: {{rendered_value | replace: "😀"," " | replace: "?", " "}} ;;
 }
 parameter: xyzz {
   type: string

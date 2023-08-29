@@ -74,24 +74,17 @@ view: users {
     sql: ${TABLE}.last_name ;;
   }
 
-  dimension: state_name {
+  dimension: state {
     type: string
-    sql: ${TABLE}.state ;;
-    map_layer_name: us_states
-    label: "Name"
-    html:
-    <div style="background: linear-gradient(to right, #D6AE7B, #EACDA3)">
-    <span style="display: table; margin: 0 auto;">
-    <b style="font-size: 15px; color: DarkRed;">{{ rendered_value }}</b>
-    </span>
-    </div>
-    ;;
-    link: {
-      label: "Go to Hub Level"
-      url: "/dashboards/4?state={{ rendered_value }}&limit=5000"
-    }
+    sql: ${TABLE}.state ;;}
 
-  }
+  dimension: state_flag_image {
+    type: string
+    sql: ${state} ;;
+    html:
+
+    <img src="https://upload.wikimedia.org/wikipedia/commons/0/01/Flag_of_California.svg" height="170" width="255">;;
+    }
 
   dimension: zip {
     type: zipcode

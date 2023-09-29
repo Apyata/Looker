@@ -69,6 +69,11 @@ view: users {
     sql: ${TABLE}.gender ;;
   }
 
+  dimension: genders {
+    type: yesno
+    sql: ${gender}="m" ;;
+  }
+
   dimension: last_name {
     type: string
     sql: ${TABLE}.last_name ;;

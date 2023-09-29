@@ -68,6 +68,8 @@ explore: order_items {
   }
 }
 
+
+
 explore: orders {
   always_filter: {
     filters: [orders.status: "completed"]
@@ -77,6 +79,8 @@ explore: orders {
     sql_on: ${orders.user_id} = ${users.id} ;;
     relationship: many_to_one
   }
+
+
 }
 
 
@@ -88,6 +92,12 @@ explore: orders {
 explore: products {}
 
 explore: users {
+
+    always_filter:{
+      filters:[users.genders:""]
+    }
+
+
   join: userss {
     relationship: many_to_one
     sql_on: ${users.id}.id}=${userss.ids}.id} ;;
